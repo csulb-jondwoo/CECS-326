@@ -221,7 +221,7 @@ void display_MBT(MBT mbt){
         if(i % 32 != 0){
             continue;
         }else{
-            cout << "[" << setw(4) << setfill('0') << i << ":" << setw(4) << setfill('0') << i + 31 << ']';
+            cout << "[" << setw(4) << setfill('0') << right << i << ":" << setw(4) << setfill('0') << i + 31 << right << ']';
             for(int j = i; j < i+32; j++) {
                 printf("[%c]", mbt.blocks[j] ? ' ':'x');
             }
