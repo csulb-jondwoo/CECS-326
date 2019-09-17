@@ -12,7 +12,6 @@ static int PID;
 
 /**
  * Information for MBT object
- *
  */
 struct MBT{
     int free_blocks_available = MBT_size;
@@ -21,7 +20,6 @@ struct MBT{
 
 /**
  * Information for page table object
- *
  */
 struct page_table{
     int *array_ptr = nullptr;
@@ -29,7 +27,6 @@ struct page_table{
 
 /**
  * Information for PCB object
- *
  */
 struct PCB{
     int PID = 0;
@@ -40,7 +37,6 @@ struct PCB{
 
 /**
  * Information for Ready Queue object
- *
  */
 struct rdy_Q{
     PCB *head_ptr = nullptr;
@@ -48,7 +44,6 @@ struct rdy_Q{
 
 /**
  * Instantiates a MBT object
- *
  */
 MBT init_MBT(){
     MBT mbt = {MBT_size - OS_reserve};
@@ -63,7 +58,6 @@ MBT init_MBT(){
 
 /**
  * Instantiates a Ready Queue object
- *
  */
 rdy_Q init_Q (){
     rdy_Q queue = {.head_ptr = nullptr};
@@ -376,7 +370,7 @@ void delete_ptable(PCB &pcb, MBT &mbt){
 void delete_PCB(rdy_Q &queue, int user_selected_PID, MBT &mbt){
     //process always exists if this function is called
     if(is_first(queue, user_selected_PID)){ //if deleting first pcb in queue
-        PCB *to_del = queue.head_ptr; //assign to to_del variable used for deletion
+        PCB *to_del = queue.head_ptr; //assign to_del variable used for deletion
         printf("Deleting process: %d\n", to_del->PID);
         delete_ptable(*queue.head_ptr, mbt);
         queue.head_ptr = queue.head_ptr->next_pcb_ptr; //assign head to next pcb
@@ -391,6 +385,7 @@ void delete_PCB(rdy_Q &queue, int user_selected_PID, MBT &mbt){
                 temp->next_pcb_ptr = to_del->next_pcb_ptr; //assign current temp's next pcb to the deleted pcb's next pcb
                 delete_ptable(*to_del, mbt);
                 delete to_del;
+                break; //break out of loop when process deleted
             }
             temp = temp->next_pcb_ptr; //iterate pcb
         }
