@@ -250,9 +250,14 @@ bool display_Q(rdy_Q queue){
         }else{
             while(temp != nullptr){
                 printf("\nPID: %d\nSize: %d\n", temp->PID, temp->ptable_size);
+                cout << "Blocks Used:" << endl;
                 for(int i = 0; i < temp->ptable_size; i++){
-                    printf("[%d:%d]\n", i, temp->ptable_ptr->array_ptr[i]);
+                    cout << left << setw(4) << setfill(' ') << temp->ptable_ptr->array_ptr[i] << " ";
+                    if((i+1) % 20 == 0 && i != 0){
+                        cout << endl;
+                    }
                 }
+                cout << endl;
                 temp = temp->next_pcb_ptr;
             }
             return true;
@@ -471,7 +476,7 @@ void terminate_all(rdy_Q &queue, MBT &mbt){
 bool exit_program(rdy_Q &queue, MBT &mbt){
     if(queue.head_ptr != nullptr){ //non-empty queue
         display_PID(queue);
-        puts("Do you wish to close all processes?\n1: yes\n2: no\n");
+        puts("\nDo you wish to close all processes?\n1: yes\n2: no\n");
         int user_input = get_input(1, 2);
         switch(user_input){
             case 1:
