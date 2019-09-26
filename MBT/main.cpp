@@ -8,7 +8,7 @@ using namespace std;
 
 constexpr int MBT_size = 1024;
 constexpr int OS_reserve = 32;
-static int PID;
+static int PID = 0;
 
 /**
  * Information for MBT object
