@@ -5,3 +5,4 @@
   
 - Understanding of interprocess communication and various methods how they communicate
 
+- Simulated race conditions and its solution implementation via semaphores
